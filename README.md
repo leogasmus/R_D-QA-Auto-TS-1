@@ -1,2 +1,2 @@
 # learn_git
-1. Try conflict
+Try conflict 2

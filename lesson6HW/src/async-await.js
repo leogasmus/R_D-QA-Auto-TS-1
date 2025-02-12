@@ -1,7 +1,9 @@
 async function getProducts() {
     const response = await fetch('https://fakestoreapi.com/products/');
     const data = await response.json();
-    if (!response.ok) throw new Error(`Помилка виконнаня запиту: ${response.status}`);
+    if (!response.ok) {
+        throw new Error(`Помилка виконнаня запиту: ${response.status}`);
+    }
     return data;
 }
 

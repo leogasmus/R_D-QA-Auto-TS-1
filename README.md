@@ -13,3 +13,5 @@
 **Homework 6** - [Try-catch-async](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/7)
 
 **Homework 7** - [TS-basics](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/8)
+
+**Homework 8** - [TS-interfaces-classes](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/9)

@@ -15,3 +15,5 @@
 **Homework 7** - [TS-basics](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/8)
 
 **Homework 8** - [TS-interfaces-classes](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/9)
+
+**Homework 9** - [TS-oop-solid](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/10)

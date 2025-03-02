@@ -19,3 +19,5 @@
 **Homework 9** - [TS-oop-solid](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/10)
 
 **Homework 10** - [Test-frameworks-unit-tests](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/11)
+
+**Homework 11** - [Mock-in-unit-testing](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/12)

@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "4fb00111-92b2-4c3c-bb42-923e0dd4d0ba",
+		"name": "Fake_joke",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7229705"
+	},
+	"item": [
+		{
+			"name": "oneRandomJoke",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Status code should be 200', ()=> {\r",
+							"    pm.response.to.be.status(200);\r",
+							"})\r",
+							"\r",
+							"pm.test('Response should contain id, type, setup, and punchline', () => {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('id');\r",
+							"    pm.expect(jsonData).to.have.property('type');\r",
+							"    pm.expect(jsonData).to.have.property('setup');\r",
+							"    pm.expect(jsonData).to.have.property('punchline');\r",
+							"});\r",
+							"\r",
+							"pm.test('Joke ID should change', () => {\r",
+							"    const prevId = pm.environment.get('prevJokeId');\r",
+							"    const newId = pm.response.json().id;\r",
+							"    pm.expect(newId).to.not.equal(prevId);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"try {\r",
+							"    const response = await pm.sendRequest({\r",
+							"        url: pm.environment.get('baseUrl')+'/random_joke',\r",
+							"        method: \"GET\"\r",
+							"    });\r",
+							"    \r",
+							"   const jsonData = response.json()\r",
+							"   const id = jsonData.id\r",
+							"    pm.variables.set('prevJokeId', id)\r",
+							"} catch (err) {\r",
+							"    console.error(err);\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/random_joke",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"random_joke"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "tenRandomJoke",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Status code should be 200', ()=> {\r",
+							"    pm.response.to.be.status(200);\r",
+							"})\r",
+							"pm.test('Array should have 10 jakes', () => {\r",
+							"    const resp = pm.response.json();\r",
+							"    pm.expect(resp.length).to.be(10);\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/random_ten",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"random_ten"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "randomJokeByCategory",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Jokes should be of type 'programming'\", () => {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    jsonData.forEach(joke => {\r",
+							"        pm.expect(joke.type).to.equal(\"programming\");\r",
+							"    });\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/jokes/programming/random",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"jokes",
+						"programming",
+						"random"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

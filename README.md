@@ -25,3 +25,5 @@
 **Homework 12** - [Api-tests-basics-with-postman](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/13)
 
 **Homework 13** - [Contract-testing](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/14)
+
+**Homework 15** - [Selectors](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/15)

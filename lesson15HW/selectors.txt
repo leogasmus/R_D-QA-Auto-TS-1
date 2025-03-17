@@ -1,0 +1,24 @@
+link=https://robotdreams.cc/uk
+
+CSS Selectors
+1. div.lg-title - Базовий логотип
+2. #header > div > nav > ul > li.nav__list-item:nth-child(3) - елемент меню "Про школу"
+3. .header__actions > #purchases-link - лінк до корзини
+
+
+XPath Selectors
+1. //div[@class='content']//form//input[@id='subscribe_email_type_email'] - поле вводу Email для підписки на розсилку
+2. //a[contains(text(), "Всі матеріали")] - кнопка для переходу в блог
+3. //footer/div/div[1]/span - копірайт
+
+
+TestCase 1
+1. Перейти на https://robotdreams.cc/uk
+2. В поле //div[@class='content']//form//input[@id='subscribe_email_type_email'] вести test@mail.com
+3. Натиснути на кнопку //div[@class="container"]//form//button
+4. З’являється повідомлення про помилку .error > div:nth-child(1) > span = Обов`язкове поле
+
+TestCase 2
+1. Перейти на https://robotdreams.cc/uk
+2. Натиснути на кнопку переходу в корзину - .header__actions > #purchases-link
+3. Дочекатися форми вводу Email - #purchase_auth_email_type_email

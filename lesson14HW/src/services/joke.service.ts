@@ -15,7 +15,7 @@ export class JokeService {
     }
 
     public async getRandomJokeByProgramming(): Promise<JokeDto> {
-        const response = await makeRequest('/jokes/programming/random/');
+        const response = await makeRequest('/jokes/programming/random');
         const data = await response.json();
         return data as JokeDto;
     }

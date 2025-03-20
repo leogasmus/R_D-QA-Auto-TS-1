@@ -47,7 +47,7 @@ describe('PactV3 PetsStore consumer tests', () => {
                 .uponReceiving('get a order')
                 .withRequest({
                     method: 'GET',
-                    path: '/v2/order/6'
+                    path: '/v2/shop/order'
                 })
                 .willRespondWith({
                     status: 200,

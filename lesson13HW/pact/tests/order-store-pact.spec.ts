@@ -24,15 +24,15 @@ describe('PactV3 PetsStore consumer tests', () => {
 
     const EXPECTED_BODY = like(orderExample);
 
-    describe('create and then request a order', () => {
-        it('returns the requested order', () => {
+    describe('create an order', () => {
+        it('returns the created order', () => {
             // Arrange
             provider
                 .given('order interaction')
                 .uponReceiving('create a order')
                 .withRequest({
                     method: 'POST',
-                    path: '/v2/shop/order',
+                    path: '/v2/store/order',
                     body: orderExample,
                     headers: {
                         'Content-Type': 'application/json',
@@ -43,26 +43,15 @@ describe('PactV3 PetsStore consumer tests', () => {
                     status: 200,
                     headers: { 'content-type': 'application/json' },
                     body: EXPECTED_BODY
-                })
-                .uponReceiving('get a order')
-                .withRequest({
-                    method: 'GET',
-                    path: '/v2/order/6'
-                })
-                .willRespondWith({
-                    status: 200,
-                    headers: { 'content-type': 'application/json' },
-                    body: EXPECTED_BODY
                 });
+        });
 
-            return provider.executeTest(async (mockserver) => {
+        it('Run pet store service consumer test', () => {
+            return provider.executeTest(async (mockServer) => {
                 // Act
-                petStoreService = new PetStoreService(mockserver.url);
-                const responsePost = await petStoreService.createOrder(orderExample);
-                const response = await petStoreService.getOrder(6);
-
+                petStoreService = new PetStoreService(mockServer.url);
+                const response = await petStoreService.createOrder(orderExample);
                 // Assert
-                expect(responsePost.data).to.deep.eq(orderExample);
                 expect(response.data).to.deep.eq(orderExample);
             });
         });

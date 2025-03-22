@@ -19,6 +19,7 @@
 							"\r",
 							"const jsonData = pm.response.json();\r",
 							"pm.environment.set(\"imageId\", jsonData.id);\r",
+							"pm.environment.set(\"imageUrl\", jsonData.url);\r",
 							"\r",
 							"pm.test(\"Image should upload\", () => {\r",
 							"    pm.expect(jsonData).to.have.property(\"id\");\r",
@@ -56,11 +57,6 @@
 							"key": "file",
 							"type": "file",
 							"src": "/C:/Users/Kyrylo/Downloads/pCat.png"
-						},
-						{
-							"key": "sub",
-							"value": "prog_cat",
-							"type": "text"
 						}
 					]
 				},
@@ -140,9 +136,12 @@
 							"pm.environment.set(\"voteId\", jsonData.id);\r",
 							"\r",
 							"pm.test(\"Vote registered successfully\", () => {\r",
-							"    pm.expect(jsonData).to.have.property(\"id\");\r",
+							"    pm.expect(jsonData.message).to.be.equal(\"SUCCESS\");\r",
 							"});\r",
 							"\r",
+							"pm.test(\"Image id should be equal previous id\", function () {\r",
+							"     pm.expect(jsonData['image_id']).to.equal(pm.variables.get(\"imageId\"));\r",
+							"});\r",
 							""
 						],
 						"type": "text/javascript",
@@ -203,15 +202,14 @@
 							"\r",
 							"const jsonData = pm.response.json();\r",
 							"const imageId = pm.environment.get(\"imageId\");\r",
-							"\r",
-							"\r",
-							"\r",
 							"const votesByImage = jsonData.filter(vote => vote.image_id === imageId);\r",
-							"\r",
 							"const findVote = pm.environment.get(\"voteId\");\r",
 							"const myVote = votesByImage.find(vote => vote.id === findVote)\r",
+							"\r",
 							"pm.test('VoteList have my vote', () => {\r",
 							"    pm.expect(myVote).to.have.property('id')\r",
+							"    pm.expect(myVote.id).to.equal(findVote)\r",
+							"    pm.expect(myVote['image_id']).to.equal(imageId)\r",
 							"})\r",
 							""
 						],
@@ -253,11 +251,11 @@
 							"});\r",
 							"\r",
 							"let jsonData = pm.response.json();\r",
-							"pm.test(\"Image added to favorites\", function () {\r",
+							"pm.test(\"Image should be added to favorites\", function () {\r",
 							"    pm.expect(jsonData).to.have.property(\"id\");\r",
 							"});\r",
 							"\r",
-							"pm.environment.set(\"favourite_id\", jsonData.id);"
+							"pm.environment.set(\"favouriteId\", jsonData.id);"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -307,16 +305,14 @@
 							"\r",
 							"let jsonData = pm.response.json();\r",
 							"let imageId = pm.environment.get(\"imageId\");\r",
+							"let imageUrl = pm.environment.get(\"imageUrl\");\r",
 							"\r",
-							"let favoriteItem = jsonData.filter(fav => fav.image_id === imageId);\r",
+							"const hasId = jsonData.some(el => el.image_id === imageId && el['image']['url'] === imageUrl);\r",
 							"\r",
-							"\r",
-							"\r",
-							"pm.test(\"Image should be in favorites\", function () {\r",
-							"    favoriteItem.forEach(el => pm.expect(el).to.have.property('id'))\r",
-							"    pm.expect(favoriteItem.find(el => el.id === pm.environment.get(\"favouriteId\"))).not.to.be.null \r",
-							"\r",
-							"});"
+							"pm.test(`Image with id ${imageId} in favorites`, () => {\r",
+							"    pm.expect(hasId).to.be.true;\r",
+							"})\r",
+							""
 						],
 						"type": "text/javascript",
 						"packages": {}

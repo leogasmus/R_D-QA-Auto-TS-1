@@ -4,6 +4,59 @@
   },
   "interactions": [
     {
+      "description": "create a order",
+      "providerStates": [
+        {
+          "name": "order interaction"
+        }
+      ],
+      "request": {
+        "body": {
+          "complete": true,
+          "id": 6,
+          "petId": 5,
+          "quantity": 2,
+          "shipDate": "2025-03-17T19:06:54.907Z",
+          "status": "approved"
+        },
+        "headers": {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        "method": "POST",
+        "path": "/v2/store/order"
+      },
+      "response": {
+        "body": {
+          "complete": true,
+          "id": 6,
+          "petId": 5,
+          "quantity": 2,
+          "shipDate": "2025-03-17T19:06:54.907Z",
+          "status": "approved"
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "content-type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {},
+          "status": {}
+        },
+        "status": 200
+      }
+    },
+    {
       "description": "create a pet",
       "providerStates": [
         {

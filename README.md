@@ -29,3 +29,5 @@
 **Homework 14** - [Api-framework-workshop](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/16)
 
 **Homework 15** - [Selectors](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/15)
+
+**Homework 16** - [Cypress-puppeteer](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/18)

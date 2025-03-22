@@ -2,6 +2,7 @@ describe('Prom', () => {
     beforeEach(() => {
         cy.visit('https://prom.ua/');
     });
+
     it('should find torch', () => {
         cy.get('[name="search_term"]').type('Ліхтарик');
         cy.get('[data-qaid="search_btn"]').click();

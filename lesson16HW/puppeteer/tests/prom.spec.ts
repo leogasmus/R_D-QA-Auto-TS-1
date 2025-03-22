@@ -9,15 +9,18 @@ describe('Puppeteer prom tests', () => {
     before(async () => {
         browser = await puppeteer.launch({ headless: false, defaultViewport: { width: 1200, height: 800 } });
     });
+
     beforeEach(async () => {
         context = await browser.createBrowserContext();
         page = await context.newPage();
         await page.goto('https://prom.ua/');
     });
+
     afterEach(async () => {
         await page.close();
         await context.close();
     });
+
     after(async () => {
         await browser.close();
     });

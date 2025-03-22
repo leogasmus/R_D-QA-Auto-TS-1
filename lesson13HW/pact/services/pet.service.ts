@@ -1,12 +1,12 @@
 import axios, { AxiosPromise } from 'axios';
 import { OrderDto } from '../models/order.dto';
 
-export class PetStoreService {
+export class OrderService {
     public constructor(private url: string) {}
     public getOrder = (id: number): AxiosPromise => {
         return axios.request({
             baseURL: this.url,
-            headers: { Accept: 'application/json' },
+            headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
             method: 'GET',
             url: `/v2/store/order/${id}`
         });

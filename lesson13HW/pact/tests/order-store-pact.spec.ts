@@ -1,39 +1,38 @@
 import { expect } from 'chai';
-import { PactV3, MatchersV3 } from '@pact-foundation/pact';
+import { PactV3, MatchersV3, Verifier } from '@pact-foundation/pact';
 import { OrderDto } from '../models/order.dto';
-import { PetStoreService } from '../services/pet.service';
+import { OrderService } from '../services/pet.service';
 const { like } = MatchersV3;
+import path from 'path';
 
 describe('PactV3 PetsStore consumer tests', () => {
-    let petStoreService: PetStoreService;
+    let orderService: OrderService;
 
     // Сетапаємо контракт
     const provider = new PactV3({
-        consumer: 'Pets-Web-v3',
-        provider: 'Pets-API-v3'
+        consumer: 'FrontEnd',
+        provider: 'OrderService'
     });
 
     const orderExample: OrderDto = {
-        id: 6,
-        petId: 5,
-        quantity: 2,
-        shipDate: '2025-03-17T19:06:54.907Z',
-        status: 'approved',
+        id: 3,
+        petId: 3,
+        quantity: 3,
+        shipDate: '2025-03-22T05:24:25.107+0000',
+        status: 'placed',
         complete: true
     };
 
     const EXPECTED_BODY = like(orderExample);
 
-    describe('create an order', () => {
-        it('returns the created order', () => {
-            // Arrange
+    describe('Get order by Id', () => {
+        it('should return the requested order', async () => {
             provider
-                .given('order interaction')
-                .uponReceiving('create a order')
+                .given('order with ID 3 exists')
+                .uponReceiving('GET request to fetch an order')
                 .withRequest({
-                    method: 'POST',
-                    path: '/v2/store/order',
-                    body: orderExample,
+                    method: 'GET',
+                    path: '/v2/store/order/3',
                     headers: {
                         'Content-Type': 'application/json',
                         Accept: 'application/json'
@@ -41,19 +40,36 @@ describe('PactV3 PetsStore consumer tests', () => {
                 })
                 .willRespondWith({
                     status: 200,
-                    headers: { 'content-type': 'application/json' },
+                    headers: { 'Content-Type': 'application/json' },
                     body: EXPECTED_BODY
                 });
-        });
 
-        it('Run pet store service consumer test', () => {
-            return provider.executeTest(async (mockServer) => {
+            await provider.executeTest(async (mockServer): Promise<void> => {
                 // Act
-                petStoreService = new PetStoreService(mockServer.url);
-                const response = await petStoreService.createOrder(orderExample);
+                orderService = new OrderService(mockServer.url);
+                const response = await orderService.getOrder(3);
+
                 // Assert
-                expect(response.data).to.deep.eq(orderExample);
+                expect(response.status).to.equal(200);
+                expect(response.data).to.deep.equal(orderExample);
+                expect(response.data).to.have.keys(['id', 'petId', 'quantity', 'shipDate', 'status', 'complete']);
             });
+        });
+    });
+
+    describe('Verify provider with real API', () => {
+        const BASE_URL = 'https://petstore.swagger.io';
+        const pactFilePath = path.resolve(__dirname, '../pacts/FrontEnd-OrderService.json');
+
+        it('should validate expectations against the provider', async () => {
+            await new Verifier({
+                providerBaseUrl: BASE_URL,
+                pactUrls: [pactFilePath]
+            })
+                .verifyProvider()
+                .then(() => {
+                    console.log('Verification done!');
+                });
         });
     });
 });

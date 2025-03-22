@@ -1,0 +1,110 @@
+{
+  "consumer": {
+    "name": "FrontEnd"
+  },
+  "interactions": [
+    {
+      "description": "GET request to fetch an order",
+      "providerStates": [
+        {
+          "name": "order with ID 3 exists"
+        }
+      ],
+      "request": {
+        "headers": {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        "method": "GET",
+        "path": "/v2/store/order/3"
+      },
+      "response": {
+        "body": {
+          "complete": true,
+          "id": 3,
+          "petId": 3,
+          "quantity": 3,
+          "shipDate": "2025-03-22T05:24:25.107+0000",
+          "status": "placed"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {},
+          "status": {}
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "get an order",
+      "providerStates": [
+        {
+          "name": "order interaction"
+        }
+      ],
+      "request": {
+        "headers": {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        "method": "GET",
+        "path": "/v2/store/order/3"
+      },
+      "response": {
+        "body": {
+          "complete": true,
+          "id": 3,
+          "petId": 3,
+          "quantity": 3,
+          "shipDate": "2025-03-22T05:24:25.107+0000",
+          "status": "placed"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {},
+          "status": {}
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pact-js": {
+      "version": "14.0.0"
+    },
+    "pactRust": {
+      "ffi": "0.4.22",
+      "models": "1.2.3"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "OrderService"
+  }
+}

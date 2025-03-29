@@ -1,22 +1,27 @@
 import { Locator, Page } from '@playwright/test';
 
 export class HomePage {
-    private readonly page: Page;
-    private readonly searchInput: Locator;
-    private readonly searchButton: Locator;
-    private readonly productName: Locator;
-    private readonly showSidebar: Locator;
-
-    public constructor(page: Page) {
-        this.page = page;
-        this.searchInput = page.getByPlaceholder('Я шукаю...');
-        this.searchButton = page.getByTestId('search_btn');
-        this.productName = page.getByTestId('product_name');
-        this.showSidebar = page.getByTestId('show_sidebar');
+    private get searchInput(): Locator {
+        return this.page.getByPlaceholder('Я шукаю...');
     }
+
+    private get searchButton(): Locator {
+        return this.page.getByTestId('search_btn');
+    }
+
+    private get productName(): Locator {
+        return this.page.getByTestId('product_name');
+    }
+
+    private get showSidebar(): Locator {
+        return this.page.getByTestId('show_sidebar');
+    }
+
+    public constructor(private page: Page) {}
 
     public async goto(): Promise<void> {
         await this.page.goto('https://prom.ua');
+        await this.searchInput.waitFor();
     }
 
     public async searchProduct(product: string): Promise<void> {

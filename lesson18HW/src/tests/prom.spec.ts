@@ -3,12 +3,16 @@ import { HomePage } from '../pom/home.page';
 import { Sidebar } from '../pom/sidebar.page';
 
 test.describe('Prom ', () => {
-    test('can search', async ({ page }) => {
-        const expectedProduct = 'iPhone';
-        const homePage = new HomePage(page);
+    let homePage: HomePage;
+    test.beforeEach(async ({ page }) => {
+        homePage = new HomePage(page);
 
         await homePage.goto();
         await expect(page).toHaveURL('https://prom.ua');
+    });
+
+    test('can search', async () => {
+        const expectedProduct = 'iPhone';
         await homePage.searchProduct(expectedProduct);
         const actualProducts = await homePage.getProductName();
         expect(actualProducts.length).toBeGreaterThan(0);
@@ -18,7 +22,6 @@ test.describe('Prom ', () => {
     });
 
     test('should promote application', async ({ page }) => {
-        const homePage = new HomePage(page);
         const sidebar = new Sidebar(page);
         const expectedText = 'Агов! А в додатку зручніше';
 

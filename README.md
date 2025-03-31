@@ -32,4 +32,6 @@
 
 **Homework 16** - [Cypress-puppeteer](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/18)
 
+**Homework 17** - [Selenium-webdriver-and-webdriver-io](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/20)
+
 **Homework 18** - [Playwright-test](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/21

@@ -1,7 +1,7 @@
 import { Locator } from '@playwright/test';
 
 export class HeaderElement {
-    private get searchInput(): Locator {
+    public get searchInput(): Locator {
         return this.baseLocator.locator('input[placeholder="Я шукаю..."]');
     }
 
@@ -20,13 +20,11 @@ export class HeaderElement {
     public constructor(private baseLocator: Locator) {}
 
     public async clickOnSidebar(): Promise<void> {
-        await this.showSidebar.waitFor();
         await this.showSidebar.click();
     }
+
     public async fillSearchInputAndClick(product: string): Promise<void> {
-        await this.searchInput.waitFor();
         await this.searchInput.fill(product);
         await this.searchButton.click();
     }
-
 }

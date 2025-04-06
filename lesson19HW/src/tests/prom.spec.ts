@@ -22,11 +22,11 @@ test.describe('Prom ', () => {
     });
 
     test('should promote application', async () => {
-        // const sidebar = new Sidebar(page);
         const expectedText = 'Агов! А в додатку зручніше';
 
         await homePage.goto();
         await homePage.openSideBar();
+
         await expect((await homePage.sidebarElement.qrCode).isVisible).toBeTruthy();
         await expect(homePage.sidebarElement.appPromoBanner).toContainText(expectedText);
     });

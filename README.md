@@ -34,4 +34,6 @@
 
 **Homework 17** - [Selenium-webdriver-and-webdriver-io](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/20)
 
-**Homework 18** - [Playwright-test](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/21
+**Homework 18** - [Playwright-test](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/21)
+
+**Homework 19** - [Playwright-test](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/22)

@@ -27,7 +27,7 @@ test.describe('Prom ', () => {
         await homePage.goto();
         await homePage.openSideBar();
 
-        await expect((await homePage.sidebarElement.qrCode).isVisible).toBeTruthy();
+        await expect(homePage.sidebarElement.qrCode).toBeVisible()
         await expect(homePage.sidebarElement.appPromoBanner).toContainText(expectedText);
     });
 });

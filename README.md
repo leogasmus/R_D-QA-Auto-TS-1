@@ -37,3 +37,5 @@
 **Homework 18** - [Playwright-test](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/21)
 
 **Homework 19** - [Playwright-test](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/22)
+
+**Homework 20** - [Cucumber.js](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/23)

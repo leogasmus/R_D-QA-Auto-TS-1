@@ -7,7 +7,7 @@ export class HomePage {
     public sidebarElement: SidebarElement;
 
     private get productName(): Locator {
-        return this.page.getByTestId('product_name');
+        return this.page.locator('[data-qaid="product_name"]');
     }
 
     public constructor(private page: Page) {

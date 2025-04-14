@@ -128,7 +128,6 @@ dist
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 ../.idea
-/.idea
 
 # yarn v2
 .yarn/cache
@@ -136,32 +135,3 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-# Ignore Mac DS_Store files
-.DS_Store
-**/.DS_Store
-
-# Playwright and test reporters
-playwright-report/
-allure-results/
-allure-report/
-
-# Mochawesome reports
-mochawesome-report/
-mochawesome.json
-
-# ReportPortal local files
-reportportal-launch.json
-rp-debug.log
-
-# BrowserStack Test Observability local reports
-browserstack-reports/
-bs-test-observability/
-
-# Test media outputs
-*.mp4
-*.webm
-*.avi
-*.mov
-*.png
-*.jpg
-*.jpeg

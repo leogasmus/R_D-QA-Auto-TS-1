@@ -1,0 +1,22 @@
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+allure-results/
+allure-report/
+reportportal-launch.json
+rp-debug.log
+browserstack-reports/
+bs-test-observability/
+mochawesome-report/
+mochawesome.json
+.DS_Store
+Thumbs.db
+*.mp4
+*.webm
+*.png
+*.jpg
+*.jpeg

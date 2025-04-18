@@ -9,10 +9,6 @@ on:
 env:
   BUILD_FOLDER: ./lesson19HW
 
-defaults:
-  run:
-    working-directory: ${{ env.BUILD_FOLDER }}
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,16 +24,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+          cache: 'false'
 
       - name: Install packages
         run: npm ci
+        working-directory: ${{ env.BUILD_FOLDER }}
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
+        working-directory: ${{ env.BUILD_FOLDER }}
 
       - name: Run Playwright tests
         run: npm run test
+        working-directory: ${{ env.BUILD_FOLDER }}
 
       - name: Upload Playwright report
         uses: actions/upload-artifact@v4
@@ -52,5 +51,4 @@ jobs:
         if: always()
         with:
           name: playwright-tests-results
-          path: ${{ env.BUILD_FOLDER }}/test-results
-          retention-days: 30
+          path: ${{ env.BUILD_FOLDER }}/test-result

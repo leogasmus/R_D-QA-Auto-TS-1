@@ -1,0 +1,28 @@
+services:
+  app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    networks:
+      - testnet
+
+  tests:
+    build:
+      context: ./tests
+      dockerfile: Dockerfile
+    depends_on:
+      - app
+    networks:
+      - testnet
+      - reportportal_network
+    volumes:
+      - ./tests:/tests
+    command: ['npm', 'run', 'test']
+
+networks:
+  testnet:
+    driver: bridge
+  reportportal_network:
+    external: true

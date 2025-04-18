@@ -39,3 +39,7 @@
 **Homework 19** - [Playwright-test](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/22)
 
 **Homework 20** - [Cucumber.js](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/23)
+
+**Homework 21** - [Reporting](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/24)
+
+**Homework 22** - [Docker - CI/CD ](https://github.com/leogasmus/R_D-QA-Auto-TS-1/pull/25)

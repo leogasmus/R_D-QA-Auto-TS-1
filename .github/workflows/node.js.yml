@@ -50,4 +50,4 @@ jobs:
         if: always()
         with:
           name: playwright-tests-results
-          path: ${{ env.BUILD_FOLDER }}/test-result
+          path: ${{ env.BUILD_FOLDER }}/test-results
